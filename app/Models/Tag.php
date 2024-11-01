@@ -14,4 +14,12 @@ class Tag extends Model
     ];
 
     public $timestamps = false;
+
+    /**
+     * Les articles du tag.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }
