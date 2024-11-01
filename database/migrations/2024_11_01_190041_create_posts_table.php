@@ -25,6 +25,12 @@ class CreatePostsTable extends Migration
             $table->text('meta_keywords');              // Les mots-clés pour le SEO
             $table->boolean('active')->default(false);  // Article publié ou non
             $table->string('image')->nullable();        // Nom de l'image réduite (miniature pour la page d'accueil)
+
+            // Clé étrangère
+            $table->foreignId('user_id')
+                ->constrained()         // Clé étrangère (user_id) qui fait référence à l'ID de la table users
+                ->onDelete('cascade')   // Suppression en cascade (si l'utilisateur est supprimé, ses articles le sont aussi)
+                ->onUpdate('cascade');  // Mise à jour en cascade (si l'ID de l'utilisateur est modifié, les articles le sont aussi)
         });
     }
 

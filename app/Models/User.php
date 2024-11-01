@@ -13,9 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * Les attributs qui sont assignables.
      */
     protected $fillable = [
         'name',
@@ -27,8 +25,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -36,11 +32,17 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * Les attributs qui doivent être convertis en types natifs.
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Récupère les articles de l'utilisateur.
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
