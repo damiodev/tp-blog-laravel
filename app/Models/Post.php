@@ -33,4 +33,12 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Les catégories de l'article.
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

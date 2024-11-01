@@ -15,4 +15,12 @@ class Category extends Model
     ];
 
     public $timestamps = false;
+
+    /**
+     * Les articles de la catégorie.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }
