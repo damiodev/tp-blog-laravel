@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->enum('role', array('user', 'redac', 'admin'))->default('user'); // Rôle de l'utilisateur
-            $table->boolean('valid')->default(false); // Valide si l'utilisateur peut commenter un article
+            $table->boolean('valid')->default(false);                               // Valide si l'utilisateur peut commenter un article
         });
     }
 

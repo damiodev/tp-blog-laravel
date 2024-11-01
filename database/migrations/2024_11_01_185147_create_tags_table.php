@@ -16,7 +16,7 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('tag', 50)->unique(); // Nom du tag
-            $table->string('slug')->unique(); // Texte qui va apparaître dans l'URL (qui ne doit comporter que des caractères autorisés)
+            $table->string('slug')->unique();    // Texte qui va apparaître dans l'URL (qui ne doit comporter que des caractères autorisés)
         });
     }
 
