@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 /**
- * Fonction permettant de récupérer une image
+ * Permet de récupérer une image
  */
 if (!function_exists('getImage')) {
     function getImage($post, $thumb = false)
@@ -14,6 +14,9 @@ if (!function_exists('getImage')) {
     }
 }
 
+/**
+ * Permet de récupérer la route active
+ */
 if (!function_exists('currentRoute')) {
   function currentRoute($route)
   {
