@@ -67,7 +67,7 @@
                 <h3 class="s-header__nav-heading h6">@lang('Navigate to')</h3>
 
                 <ul class="s-header__nav">
-                    {{-- <li {{ currentRoute('home') }}>
+                    <li {{ currentRoute('home') }}>
                         <a href="{{ route('home') }}" title="">@lang('Home')</a>
                     </li>
                     <li class="has-children">
@@ -77,7 +77,7 @@
                                 <li><a href="#">{{ $category->title }}</a></li>
                             @endforeach
                         </ul>
-                    </li> --}}
+                    </li>
                 </ul>
 
                 <a href="#0" title="@lang('Close Menu')" class="s-header__overlay-close close-mobile-menu">@lang('Close')</a>
