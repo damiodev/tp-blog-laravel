@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\View\Home;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer(['front.layout', 'front.index'], function ($view) {
+            $view->with([
+                'categories' => \App\Models\Category::has('posts')->get(),
+            ]);
+        });
     }
 }

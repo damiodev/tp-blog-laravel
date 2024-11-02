@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
+use App\Http\Controllers\Front\PostController as FrontPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use UniSharp\LaravelFilemanager\Lfm;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::name('home')->get('/', [FrontPostController::class, 'index']);
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => 'auth'], function () {
     Lfm::routes();
