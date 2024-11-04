@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Events\ModelCreated;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
 class Post extends Model
 {
-    use HasFactory, Notifiable; // Rajout du trait Notifiable
+    use HasFactory, Notifiable;
 
     /**
-     * Les attributs qui sont assignables.
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
     protected $fillable = [
         'title',
@@ -27,7 +30,9 @@ class Post extends Model
     ];
 
     /**
-     * Récupère l'utilisateur qui a écrit l'article.
+     * Get user of the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
@@ -35,7 +40,9 @@ class Post extends Model
     }
 
     /**
-     * Les catégories de l'article.
+     * Get all categories for the post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
     public function categories()
     {
@@ -43,7 +50,9 @@ class Post extends Model
     }
 
     /**
-     * Les tags de l'article.
+     * Get all tags for the post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function tags()
     {
@@ -51,7 +60,9 @@ class Post extends Model
     }
 
     /**
-     * Les commentaires de l'article.
+     * Get all comments for the post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments()
     {
@@ -59,7 +70,9 @@ class Post extends Model
     }
 
     /**
-     * Les commentaires validés de l'article.
+     * Get all valid comments for the post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
     public function validComments()
     {

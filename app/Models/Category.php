@@ -7,17 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     /**
-     * Les attributs qui sont assignables.
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
     protected $fillable = [
-        'title', 
+        'title',
         'slug',
     ];
 
     public $timestamps = false;
 
     /**
-     * Les articles de la catégorie.
+     * Many to Many relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
     public function posts()
     {

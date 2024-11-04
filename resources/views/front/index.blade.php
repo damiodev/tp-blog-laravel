@@ -43,7 +43,6 @@
 @endsection
 
 @section('main')
-
     @isset($title)
         <div class="row">
             <div class="column">
@@ -80,5 +79,4 @@
         </div>
 
     </div>
-
 @endsection

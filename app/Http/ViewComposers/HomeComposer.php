@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\View;
+namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use App\Models\Category;
 
-class Home
+class HomeComposer
 {
     /**
      * Bind data to the view.

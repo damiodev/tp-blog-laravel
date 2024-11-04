@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Kalnoy\Nestedset\NodeTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
 class Comment extends Model
 {
-    // On utilise le trait NodeTrait pour gérer les commentaires imbriqués
-    // On utilise également HasFactory pour générer des commentaires de test
-    // On utilise Notifiable pour envoyer des notifications
     use NodeTrait, HasFactory, Notifiable;
 
     /**
-     * Les attributs qui sont assignables en masse.
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
     protected $fillable = [
         'body',
@@ -24,7 +23,9 @@ class Comment extends Model
     ];
 
     /**
-     * Récupère l'utilisateur qui a écrit le commentaire.
+     * One to Many relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
@@ -32,7 +33,9 @@ class Comment extends Model
     }
 
     /**
-     * Récupère l'article auquel le commentaire appartient.
+     * One to Many relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function post()
     {
