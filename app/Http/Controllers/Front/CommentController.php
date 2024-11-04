@@ -43,15 +43,23 @@ class CommentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Comment $comment)
     {
-        $this->authorize('delete', $comment);
+        try {
+            // Vérifie si l'utilisateur est autorisé à supprimer ce commentaire
+            $this->authorize('delete', $comment);
 
-        $comment->delete();
+            // Supprime le commentaire
+            $comment->delete();
 
-        return response()->json();
+            // Retourne une réponse JSON avec un message de confirmation
+            return response()->json(['message' => 'Commentaire supprimé avec succès'], 200);
+        } catch (\Exception $e) {
+            // Retourne une réponse JSON avec l'erreur en cas d'échec
+            return response()->json(['error' => 'Erreur lors de la suppression du commentaire', 'details' => $e->getMessage()], 500);
+        }
     }
 
     /**
