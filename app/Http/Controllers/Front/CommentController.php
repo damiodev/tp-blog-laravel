@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Http\Requests\Front\CommentRequest;
+use App\Models\{Comment, Post};
 
 class CommentController extends Controller
 {
@@ -14,9 +15,44 @@ class CommentController extends Controller
         }
     }
 
-    public function store() {}
+    /**
+     * Store a newly created comment in storage.
+     *
+     * @param  \App\Http\Requests\Front\CommentRequest $request
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CommentRequest $request, Post $post)
+    {
+        $data = [
+            'body' => $request->message,
+            'post_id' => $post->id,
+            'user_id' => $request->user()->id,
+        ];
 
-    public function destroy() {}
+        $request->has('commentId') ?
+            Comment::findOrFail($request->commentId)->children()->create($data) :
+            Comment::create($data);
+
+        $commenter = $request->user();
+
+        return response()->json($commenter->valid ? 'ok' : 'invalid');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Comment $comment)
+    {
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
+
+        return response()->json();
+    }
 
     /**
      * Get the comments for the specified post.
